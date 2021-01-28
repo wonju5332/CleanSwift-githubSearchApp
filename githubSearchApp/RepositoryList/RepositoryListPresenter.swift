@@ -25,8 +25,9 @@ class RepositoryListPresenter: RepositoryListPresentationLogic
     //do some business data handling
   func presentSomething(response: RepositoryList.Fetch.Response)
   {
-    let displayedRepositories = response.repositories.map{
-        RepositoryList.Fetch.DisplayedRepository(id: $0.id,
+    let displayedRepositories = response
+        .repositories
+        .map{ RepositoryList.Fetch.DisplayedRepository(id: $0.id,
                                                  fullName: $0.fullName,
                                                  description: $0.description,
                                                  stargazersCount: $0.stargazersCount,

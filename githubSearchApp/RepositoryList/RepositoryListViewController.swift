@@ -76,6 +76,7 @@ class RepositoryListViewController: UIViewController, RepositoryListDisplayLogic
     tableView.dataSource = self
     title = "갬성있는 타이틀"
     tableView.reloadData()
+    searchbarTextfield.showsSearchResultsButton = true
     
   }
 
@@ -103,8 +104,9 @@ class RepositoryListViewController: UIViewController, RepositoryListDisplayLogic
     // MARK: Search Field
     @IBOutlet weak var searchbarTextfield: UISearchBar!
 
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        fetchData(q: searchText)
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text else { return }
+        fetchData(q: text)
     }
     
     // MARK: UITableView
@@ -127,3 +129,5 @@ extension RepositoryListViewController:UITableViewDelegate, UITableViewDataSourc
         return viewModel?.displayedRepository.count ?? 0
     }
 }
+
+
