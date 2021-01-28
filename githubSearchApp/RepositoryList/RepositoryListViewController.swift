@@ -73,17 +73,14 @@ class RepositoryListViewController: UIViewController, RepositoryListDisplayLogic
 //    fetchData()
     searchbarTextfield.delegate = self
     tableView.delegate = self
-    title = "Search"
+    tableView.dataSource = self
+    title = "갬성있는 타이틀"
+    tableView.reloadData()
     
   }
-  
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
-  
+
     var viewModel:RepositoryList.Fetch.ViewModel? {
         didSet {
-            
             tableView.reloadData()
         }
     }
@@ -110,12 +107,8 @@ class RepositoryListViewController: UIViewController, RepositoryListDisplayLogic
         fetchData(q: searchText)
     }
     
-    
     // MARK: UITableView
     @IBOutlet weak var tableView: UITableView!
-    
-
-    
     
 }
 
@@ -131,6 +124,6 @@ extension RepositoryListViewController:UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.displayedRepository.count ?? 3
+        return viewModel?.displayedRepository.count ?? 0
     }
 }
